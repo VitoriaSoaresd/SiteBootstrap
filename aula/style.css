@@ -1,0 +1,17 @@
+.imagens img{
+    width: 100%;
+    height: 300px;
+}
+
+.conteudo{
+    padding: 20px;
+}
+
+.conteudo img{
+    height: 400px;
+    width: 100%;
+}
+
+.texto{
+    padding: 20px;
+}
