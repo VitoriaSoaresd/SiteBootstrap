@@ -1,0 +1,148 @@
+.imagens img{
+    width: 100%;
+    height: 300px;
+}
+
+.content{
+    padding: 20px;
+}
+
+.content button{
+    background-color: black;
+    border: none;
+}
+
+.content h3{
+    padding: 40px;
+}
+
+.content p{
+    text-align: justify;
+}
+
+.content img{
+    height: 400px;
+    width: 100%;
+}
+
+.texto{
+    padding: 20px;
+}
+
+/******************************
+* Títulos nas páginas da Loja *
+*******************************/
+
+.title-sup{
+    padding:40px;
+}
+
+.title-clo{
+    padding: 40px;
+}
+
+.title-acc{
+    padding: 40px;
+}
+
+/*********
+* Rodapé *
+*********/
+
+.footersup{
+    padding-top: 20px;
+}
+
+.footerinf hr{
+    margin-bottom: 0px;
+    border: 1px black solid;
+}
+
+.footerinf img{
+    width: auto;
+    height: 85px;
+    padding: 20px;
+}
+
+/***********
+* Carrosel *
+***********/
+
+.carousel .carousel-item {
+    height: 500px;
+}
+  
+.carousel-item img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    min-height: 500px;
+}
+
+/**********************
+* Cards mais vendidos *
+**********************/
+
+.card-bestseller{
+    margin: auto;
+    padding: 0 20px 20px 20px;
+}
+
+.card-bestseller img{
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
+
+/*************
+* Newsletter *
+*************/
+
+.newsletter-subscribe {
+    color:#313437;
+    background-color:#fff;
+    padding:50px 0;
+}
+  
+.newsletter-subscribe p {
+    color:#7d8285;
+    line-height:1.5;
+}
+  
+.newsletter-subscribe h4 {
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:25px;
+    line-height:1.5;
+    padding-top:0;
+    margin-top:0;
+    color:inherit;
+}
+  
+.newsletter-subscribe .intro {
+    font-size:16px;
+    max-width:500px;
+    margin:0 auto 25px;
+}
+  
+.newsletter-subscribe .intro p {
+    margin-bottom:35px;
+}
+  
+.newsletter-subscribe form {
+    justify-content:center;
+}
+  
+.newsletter-subscribe form .form-control {
+    background:#eff1f4;
+    border:none;
+    border-radius:3px;
+    box-shadow:none;
+    outline:none;
+    color:inherit;
+    text-indent:9px;
+    height:45px;
+    margin-right:10px;
+    min-width:250px;
+}
