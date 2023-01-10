@@ -11,6 +11,9 @@
     <!--Chamando a folha do CSS-->
     <link rel="stylesheet" href="style.css">
 
+    <!--Chamando a página do JavaScript-->
+    <script src="jscript/cep.js"></script>
+
     <!--Chama o Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
@@ -52,6 +55,12 @@
               </div>
             </li>
           </ul>
+          <!-- Cria o botão de Login do Usuário -->
+          <form class="form-inline my-2 my-lg-0">
+           <a href="login.php"> <button type="button" class="btn btn-light">Área do Aluno</button></a>
+          </form>
+
+          <!-- Cria o botão de pesquisa do site -->
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
