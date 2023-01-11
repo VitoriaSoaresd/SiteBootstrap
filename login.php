@@ -4,14 +4,38 @@ require_once 'header.php';
 
 <?php
     include_once 'connection.php';
-    $dates = filter_input_array (INPUT_POST, FILTER_DEFAULT);
+?>
+
+<?php
+    $dados = filter_input_array (INPUT_POST, FILTER_DEFAULT);
+
+    if (!empty($dadoslogin['btnlogin'])) {
+
+        $buscalogin = "SELECT sid, name, email, password
+                        FROM student
+                        WHERE email =:usuario
+                        LIMIT 1";
+        
+        $resultado= $conn->prepare($buscalogin);
+        $resultado->bindParam(':usuario', $dadoslogin['usuario'], PDO::PARAM_STR);
+        $resultado->execute();
+
+    if(($resultado) AND ($resultado->rowCount() !=0)){
+        $resposta = $resultado->fetch(PDO::FETCH_ASSOC);
+        var_dump($resposta);
+
+        if(passaword_verify($dadoslogin['password'], $resposta ['password'])){
+            header("Location: admin.php");
+        }
+    }
+    }
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Login Page</title>
+    <title>Área do Aluno</title>
 
     <!--Made with love by Mutiullah Samim -->
 
@@ -47,20 +71,20 @@ require_once 'header.php';
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="login" name="user">
+                            <input type="text" class="form-control" placeholder="login" name="usuario">
 
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="senha" name="password">
+                            <input type="password" class="form-control" placeholder="senha" name="senha">
                         </div>
                         <div class="row align-items-center remember">
                             <input type="checkbox">Lembrar
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Login" class="btn float-right login_btn">
+                            <input type="submit" value="Login" class="btn float-right login_btn" name="btnlogin">
                         </div>
                     </form>
                 </div>
