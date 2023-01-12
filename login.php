@@ -1,32 +1,35 @@
 <?php
 require_once 'header.php';
+include_once 'connection.php';
 ?>
 
 <?php
-    include_once 'connection.php';
-?>
 
-<?php
-    $dados = filter_input_array (INPUT_POST, FILTER_DEFAULT);
+   // echo "password".password_hash(123, PASSWORD_DEFAULT);
+
+    $dadoslogin = filter_input_array (INPUT_POST, FILTER_DEFAULT);
 
     if (!empty($dadoslogin['btnlogin'])) {
 
-        $buscalogin = "SELECT sid, name, email, password
-                        FROM student
-                        WHERE email =:usuario
-                        LIMIT 1";
+    $buscalogin = "SELECT sid, name, email, password
+                    FROM student
+                    WHERE email =:usuario
+                    LIMIT 1";
         
-        $resultado= $conn->prepare($buscalogin);
-        $resultado->bindParam(':usuario', $dadoslogin['usuario'], PDO::PARAM_STR);
-        $resultado->execute();
+    $resultado= $conn->prepare($buscalogin);
+    $resultado->bindParam(':usuario', $dadoslogin['usuario'], PDO::PARAM_STR);
+    $resultado->execute();
 
-    if(($resultado) AND ($resultado->rowCount() !=0)){
+    if(($resultado) AND ($resultado->rowCount()!=0)){
         $resposta = $resultado->fetch(PDO::FETCH_ASSOC);
         var_dump($resposta);
+        var_dump ($dadoslogin);
 
-        if(passaword_verify($dadoslogin['password'], $resposta ['password'])){
-            header("Location: admin.php");
-        }
+    if(password_verify($dadoslogin['password'], $resposta ['password'])){
+        header("location: admin.php");
+    }else{
+        echo 'Usuário ou senha inválidos';
+    }
     }
     }
 ?>
