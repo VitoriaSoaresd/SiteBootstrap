@@ -1,11 +1,15 @@
 <?php
-require_once 'header.php';
-include_once 'connection.php';
+    require_once 'header.php';
+    include_once 'connection.php';
+
+    session_start();
+    ob_start();
 ?>
 
 <?php
 
-   // echo "password".password_hash(123, PASSWORD_DEFAULT);
+    //Exemplo para criptografar senha
+   //echo "password".password_hash(123, PASSWORD_DEFAULT);
 
     $dadoslogin = filter_input_array (INPUT_POST, FILTER_DEFAULT);
 
@@ -22,15 +26,23 @@ include_once 'connection.php';
 
     if(($resultado) AND ($resultado->rowCount()!=0)){
         $resposta = $resultado->fetch(PDO::FETCH_ASSOC);
-        var_dump($resposta);
-        var_dump ($dadoslogin);
+        //var_dump($resposta);
+        //var_dump ($dadoslogin);
 
-    if(password_verify($dadoslogin['password'], $resposta ['password'])){
-        header("location: admin.php");
+        if(password_verify($dadoslogin['password'], $resposta ['password'])){
+            $_SESSION['name'] = $resposta['name'];
+            header("location: admin.php");
+        } else{
+            $_SESSION['msg'] = "Erro: Usuário ou senha inválida!";
+        }    
     }else{
-        echo 'Usuário ou senha inválidos';
+        $_SESSION['msg'] = "Erro: Usuário ou senha inválida!";
     }
     }
+
+    if(isset($_SESSION['msg'])){
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
     }
 ?>
 
@@ -81,7 +93,7 @@ include_once 'connection.php';
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="senha" name="senha">
+                            <input type="password" class="form-control" placeholder="senha" name="password">
                         </div>
                         <div class="row align-items-center remember">
                             <input type="checkbox">Lembrar
