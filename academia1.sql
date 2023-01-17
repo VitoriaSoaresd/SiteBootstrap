@@ -6,33 +6,33 @@ CREATE DATABASE academia1 CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE academia1;
 
-CREATE TABLE addres (
-	zipcode VARCHAR (255) NOT NULL PRIMARY KEY,
-	street VARCHAR (255) NOT NULL,
-	district VARCHAR (255) NOT NULL,
-	city VARCHAR (255) NOT NULL,
-	state VARCHAR (255) NOT NULL
-);
+--CREATE TABLE addres (
+	-- zipcode VARCHAR (255) NOT NULL PRIMARY KEY,
+	-- street VARCHAR (255) NOT NULL,
+	-- district VARCHAR (255) NOT NULL,
+	-- city VARCHAR (255) NOT NULL,
+	-- state VARCHAR (255) NOT NULL
+-- );-- 
 
-INSERT INTO addres (
-    zipcode,
-    street,
-    district,
-    city,
-    state
-) VALUES (
-    '01020-345',
-    'Rua Gangorra',
-    'Verdinho',
-    'Rio de Janeiro',
-    'RJ'
-), (
-    '12345-678',
-    'Rua Girassol',
-    'Fazenda',
-    'Rio de Janeiro',
-    'RJ'
-);
+-- INSERT INTO addres (
+    -- zipcode,
+    -- street,
+    -- district,
+    -- city,
+    -- state
+-- ) VALUES (
+    -- '01020-345',
+    -- 'Rua Gangorra',
+    -- 'Verdinho',
+    -- 'Rio de Janeiro',
+    -- 'RJ'
+-- ), (
+    -- '12345-678',
+    -- 'Rua Girassol',
+    -- 'Fazenda',
+    -- 'Rio de Janeiro',
+    -- 'RJ'
+-- );
 
 CREATE TABLE student (
     sid INT PRIMARY KEY AUTO_INCREMENT,
@@ -40,15 +40,17 @@ CREATE TABLE student (
     email VARCHAR (255) NOT NULL,
     password VARCHAR (255) NOT NULL,
     cellphone VARCHAR (255) NOT NULL,
-    document VARCHAR (255) NOT NULL,
+    cpf VARCHAR (255) NOT NULL,
+    rg VARCHAR (255) NOT NULL,
     birth VARCHAR (255) NOT NULL,
+    sex VARCHAR (255)NOT NULL,
     zipcode VARCHAR (255) NOT NULL,
     housenumber SMALLINT NOT NULL,
     complement VARCHAR (255) NOT NULL,
     sdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     photo VARCHAR (255),
 
-    FOREIGN KEY (zipcode) REFERENCES addres (zipcode)
+    -- FOREIGN KEY (zipcode) REFERENCES addres (zipcode)
 );
 
 INSERT INTO student (
@@ -57,8 +59,10 @@ INSERT INTO student (
     email,
     password, 
     cellphone, 
-    document, 
-    birth, 
+    cpf,
+    rg, 
+    birth,
+    sex, 
     zipcode, 
     housenumber,
     complement,
@@ -70,7 +74,9 @@ INSERT INTO student (
     '123',
     '(21) 123456789',
     '2299',
+    '88945612',
     '1997-07-14',
+    'F',
     '01020-345',
     '03',
     'apto 144',
@@ -82,7 +88,9 @@ INSERT INTO student (
     '456',
     '(21) 987654321',
     '7259',
+    '62134985',
     '2001-01-29',
+    'M',
     '12345-678',
     '1476',
     'fundos',

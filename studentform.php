@@ -2,6 +2,7 @@
 require_once 'header.php';
 ?>
 
+
 <div class="container-fluid texto">
     <div class="row">
         <div class="col-md-12 text-center">
@@ -12,19 +13,19 @@ require_once 'header.php';
 
 
 
-<form>
+<form method="POST" action="controlform.php">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <div class="form=group">
-                    <label for="Name">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome">
+                    <label for="name">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome">
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form=group">
-                    <label for="inputEmail">E-mail</label>
+                    <label for="email">E-mail</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Seu e-mail">
                 </div>
             </div>
@@ -32,9 +33,9 @@ require_once 'header.php';
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="sexo">Sexo</label>
-                    <p><input type="radio" name="optradio" checked> Feminino
-                        <input type="radio" name="optradio"> Masculino
+                    <label for="sex">Sexo</label>
+                    <p><input type="radio" name="sex" checked value="F"> Feminino
+                        <input type="radio" name="sex" value="M"> Masculino
                     </p>
                 </div>
             </div>
@@ -45,29 +46,29 @@ require_once 'header.php';
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="cpf">CPF</label>
-                            <input type="text" class="form-control" id="cpf" name="CPF" onkeypress="$(this).mask('000.000.000-00');"
+                            <input type="text" class="form-control" id="cpf" name="cpf" onkeypress="$(this).mask('000.000.000-00');"
                                 placeholder="000.000.000-00">
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="formGroupExampleInput2">RG</label>
-                            <input type="text" class="form-control" id="rg" name="RG" placeholder="RG">
+                            <label for="rg">RG</label>
+                            <input type="text" class="form-control" id="rg" name="rg" placeholder="RG">
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="formGroupExampleInput2">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="datadenascimento" name="data de nascimento">
+                            <label for="birth">Data de Nascimento</label>
+                            <input type="date" class="form-control" id="birth" name="birth">
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="telefone">Telefone</label>
-                            <input type="text" class="form-control" id="telefone" name="telefone" onkeypress="$(this).mask('(00)00000-0000')"
+                            <label for="cellphone">Telefone</label>
+                            <input type="text" class="form-control" id="cellphone" name="cellphone" onkeypress="$(this).mask('(00)00000-0000')"
                                 placeholder="(00) 00000-0000">
                         </div>
                     </div>
@@ -77,31 +78,31 @@ require_once 'header.php';
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="cep">CEP</label>
-                                    <input type="text" class="form-control" id="cep" name="cep"
+                                    <label for="zipcode">CEP</label>
+                                    <input type="text "class="form-control" id="zipcode" name="zipcode" value=""
                                         onblur="pesquisacep(this.value);" placeholder="00.000-000">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="inputAddress">Endereço</label>
-                                    <input type="text" class="form-control" id="rua" name="rua"
-                                        placeholder="Rua/Estrada/Avenida">
+                                    <label for="validationDefault03">Endereço</label>
+                                    <input type="text" class="form-control" id="street" name="street"
+                                        placeholder="Rua/Estrada/Avenida" required>
                                 </div>
                             </div>
 
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="numero">Número</label>
-                                    <input type="text" class="form-control">
+                                    <label for="housenumber">Número</label>
+                                    <input type="text" class="form-control" name="housenumber">
                                 </div>
                             </div>
 
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="inputAddress2">Complemento</label>
-                                    <input type="text" class="form-control" id="inputAddress2"
+                                    <label for="complement">Complemento</label>
+                                    <input type="text" class="form-control" id="complement" name="complement"
                                         placeholder="Apto, casa, etc.">
                                 </div>
                             </div>
@@ -112,26 +113,46 @@ require_once 'header.php';
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputCity">Bairro</label>
-                                            <input type="text" class="form-control" id="bairro" name="bairro">
+                                            <label for="district">Bairro</label>
+                                            <input type="text" class="form-control" id="district" name="district">
                                         </div>
                                     </div>
 
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputCity">Cidade</label>
-                                            <input type="text" class="form-control" id="cidade" name="cidade">
+                                            <label for="city">Cidade</label>
+                                            <input type="text" class="form-control" id="city" name="city">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="uf">Estado</label>
+                                            <label for="state">Estado</label>
                                             <p>
-                                                <input type="text" class="form-control" id="uf" name="uf">
+                                                <input type="text" class="form-control" id="state" name="state">
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="password">Informe uma senha</label>
+                                            <input type="text" class="form-control" name="password">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="photo">Foto</label>
+                                            <input type="text" class="form-control" name="photo">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -144,7 +165,7 @@ require_once 'header.php';
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="submit" class="btn btn-primary" value="enviar" name="btncad">Cadastrar</button>
 
 </form>
 
