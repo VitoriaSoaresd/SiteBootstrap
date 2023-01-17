@@ -6,34 +6,6 @@ CREATE DATABASE academia1 CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE academia1;
 
---CREATE TABLE addres (
-	-- zipcode VARCHAR (255) NOT NULL PRIMARY KEY,
-	-- street VARCHAR (255) NOT NULL,
-	-- district VARCHAR (255) NOT NULL,
-	-- city VARCHAR (255) NOT NULL,
-	-- state VARCHAR (255) NOT NULL
--- );-- 
-
--- INSERT INTO addres (
-    -- zipcode,
-    -- street,
-    -- district,
-    -- city,
-    -- state
--- ) VALUES (
-    -- '01020-345',
-    -- 'Rua Gangorra',
-    -- 'Verdinho',
-    -- 'Rio de Janeiro',
-    -- 'RJ'
--- ), (
-    -- '12345-678',
-    -- 'Rua Girassol',
-    -- 'Fazenda',
-    -- 'Rio de Janeiro',
-    -- 'RJ'
--- );
-
 CREATE TABLE student (
     sid INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR (255) NOT NULL,
@@ -44,13 +16,11 @@ CREATE TABLE student (
     rg VARCHAR (255) NOT NULL,
     birth VARCHAR (255) NOT NULL,
     sex VARCHAR (255)NOT NULL,
-    zipcode VARCHAR (255) NOT NULL,
+    zipcode VARCHAR (9) NOT NULL,
     housenumber SMALLINT NOT NULL,
     complement VARCHAR (255) NOT NULL,
     sdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    photo VARCHAR (255),
-
-    -- FOREIGN KEY (zipcode) REFERENCES addres (zipcode)
+    photo VARCHAR (255)
 );
 
 INSERT INTO student (
@@ -108,9 +78,7 @@ CREATE TABLE employee (
     housenumber SMALLINT NOT NULL,
     complement VARCHAR (255) NOT NULL,
     edate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    photo VARCHAR (255),
-
-    FOREIGN KEY (zipcode) REFERENCES addres (zipcode)
+    photo VARCHAR (255)
 );
 
 INSERT INTO employee (

@@ -31,7 +31,7 @@
 
         if(password_verify($dadoslogin['password'], $resposta ['password'])){
             $_SESSION['name'] = $resposta['name'];
-            header("location: admin.php");
+            header("location: sprofile.php");
         } else{
             $_SESSION['msg'] = "Erro: Usuário ou senha inválida!";
         }    

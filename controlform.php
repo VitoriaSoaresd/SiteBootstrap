@@ -8,13 +8,34 @@
     var_dump($dadoscad);
 
     if (!empty($dadoscad['btncad'])){
+      
+      $vazio = false;
+
+      $dadoscad = array_map('trim', $dadoscad);
+      if (in_array("", $dadoscad)) {
+        $vazio = true;
+        echo "<script>
+        alert('Preencher todos os campos!');
+        parent.location = 'studentform.php';
+        </script>";
+      } else if(!filter_var($dadoscad['email'], FILTER_VALIDATE_EMAIL)) {
+        $vazio = true;
+        echo "<script>
+        alert('Informe um e-mail válido!');
+        parent.location = 'studentform.php';
+        </script>";
+      }
+
+    if(!$vazio) {
+
+      $password = password_hash($dadoscad['password'], PASSWORD_DEFAULT);
 
       $sql = "INSERT INTO student(name, email, password, cellphone, cpf, rg, birth, sex, zipcode, housenumber, complement, photo) VALUES (:name, :email, :password, :cellphone, :cpf, :rg, :birth, :sex, :zipcode, :housenumber, :complement, :photo)";
 
       $salvar=$conn->prepare($sql);
       $salvar->bindParam(':name', $dadoscad['name'], PDO::PARAM_STR);
       $salvar->bindParam(':email', $dadoscad['email'], PDO::PARAM_STR);
-      $salvar->bindParam(':password', $dadoscad['password'], PDO::PARAM_STR);
+      $salvar->bindParam(':password', $password, PDO::PARAM_STR);
       $salvar->bindParam(':cellphone', $dadoscad['cellphone'], PDO::PARAM_STR);
       $salvar->bindParam(':cpf', $dadoscad['cpf'], PDO::PARAM_STR);
       $salvar->bindParam(':rg', $dadoscad['rg'], PDO::PARAM_STR);
@@ -27,13 +48,20 @@
       $salvar->execute();
 
       if($salvar->rowCount()){
-        echo "Usuário cadastrado com sucesso!";
+        echo "<script>
+        alert('Usuário cadastrado com sucesso!');
+        parent.location = 'studentform.php';
+        </script>";
         unset($dadoscad);
       } else {
-        echo "Usuário não cadastrado com sucesso.";
+        echo "<script>
+        alert('Usuário não cadastrado.');
+        parent.location = 'studentform.php';
+        </script>";
       }
     }
   }
+}
 
   catch(PDOException $erro){
     echo $erro;
