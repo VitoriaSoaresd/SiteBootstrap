@@ -11,11 +11,11 @@
     <!--Chamando a folha do CSS-->
     <link rel="stylesheet" href="style.css">
 
-    <!--Chamando a página do JavaScript-->
-    <script src="jscript/cep.js"></script>
-
     <!--Chama o Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    
+    <!--Chamando a página do JavaScript com o script de cep-->
+    <script src="../jscript/cep.js"></script>
 
     <title>BeBody Gym</title>
   </head>
