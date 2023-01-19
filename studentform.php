@@ -79,8 +79,7 @@ require_once 'header.php';
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="zipcode">CEP</label>
-                                    <input type="text "class="form-control" id="zipcode" name="zipcode" value=""
-                                        onblur="pesquisacep(this.value);" placeholder="00.000-000">
+                                    <input name="zipcode" class="form-control" placeholder="" type="text" id="zipcode" value"" size="10" maxlenght="9" onblur="pesquisacep(this.value);">
                                 </div>
                             </div>
 
@@ -113,7 +112,7 @@ require_once 'header.php';
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="district">Bairro</label>
+                                            <label for="validationDefault03">Bairro</label>
                                             <input type="text" class="form-control" id="district" name="district">
                                         </div>
                                     </div>
@@ -121,14 +120,14 @@ require_once 'header.php';
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="city">Cidade</label>
+                                            <label for="validationDefault04">Cidade</label>
                                             <input type="text" class="form-control" id="city" name="city">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="state">Estado</label>
+                                            <label for="validationDefault04">Estado</label>
                                             <p>
                                                 <input type="text" class="form-control" id="state" name="state">
                                         </div>
