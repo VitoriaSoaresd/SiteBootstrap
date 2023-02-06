@@ -1,3 +1,12 @@
+<?php 
+  session_start();
+  ob_start();
+
+  if(!isset($_SESSION["quant"])){
+    $_SESSION["quant"]=0;
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -60,10 +69,17 @@
            <a href="login.php"> <button type="button" class="btn btn-light">Área do Aluno</button></a>
           </form>
 
-          <!-- Cria o botão de pesquisa do site -->
+          <a href="formkart.php"><i class="fa-solid fa-bag-shopping"></i></a>
+          <?php 
+              if($_SESSION["quant"]>0){
+                 echo $_SESSION["quant"]; 
+              }
+            ?>
+
+          <!-- Cria o botão de pesquisa do site
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-          </form>
+          </form>-->
         </div>
       </nav>
