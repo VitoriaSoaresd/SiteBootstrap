@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Fev-2023 às 20:54
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- Tempo de geração: 08-Fev-2023 às 20:56
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `activity` (
   `aid` int(11) NOT NULL,
   `nameactivity` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `activity`
@@ -42,6 +42,17 @@ CREATE TABLE `activity` (
 INSERT INTO `activity` (`aid`, `nameactivity`, `description`) VALUES
 (1, 'Jumpp', 'atividade realizada pulando em um trampolim'),
 (2, 'Spinning', 'atividade realizada em uma bicicleta com subidas');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `category`
+--
+
+CREATE TABLE `category` (
+  `cgid` int(11) NOT NULL,
+  `cgname` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -55,7 +66,7 @@ CREATE TABLE `class` (
   `hour` varchar(255) NOT NULL,
   `tid` int(11) NOT NULL,
   `aid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -75,7 +86,7 @@ CREATE TABLE `employee` (
   `complement` varchar(255) NOT NULL,
   `edate` timestamp NOT NULL DEFAULT current_timestamp(),
   `photo` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `employee`
@@ -96,7 +107,21 @@ CREATE TABLE `enableteacher` (
   `etid` int(11) NOT NULL,
   `aid` int(11) NOT NULL,
   `tid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `item`
+--
+
+CREATE TABLE `item` (
+  `itemid` int(11) NOT NULL,
+  `saleid` int(11) NOT NULL,
+  `productcode` int(11) NOT NULL,
+  `value` double NOT NULL,
+  `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -110,7 +135,7 @@ CREATE TABLE `kart` (
   `price` double NOT NULL,
   `quantcompra` int(11) NOT NULL,
   `photo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -125,16 +150,9 @@ CREATE TABLE `product` (
   `cost` double NOT NULL,
   `size` char(2) NOT NULL,
   `amount` int(11) NOT NULL,
-  `photo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Extraindo dados da tabela `product`
---
-
-INSERT INTO `product` (`productcode`, `name`, `color`, `cost`, `size`, `amount`, `photo`) VALUES
-(1, 'whey protein', '--', 50, '1k', 15, 'https://duxnutrition.vtexassets.com/arquivos/ids/163288/WPC_Mockup_Baunilha_SITE.jpg?v=638046527300500000'),
-(2, 'creatina', '--', 90, '50', 30, 'https://io.convertiez.com.br/m/newnutrition/shop/products/images/118628/large/creatina-monohidratada-micronizada-em-po-300g_2237.jpg');
+  `photo` varchar(255) NOT NULL,
+  `cgid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -143,13 +161,11 @@ INSERT INTO `product` (`productcode`, `name`, `color`, `cost`, `size`, `amount`,
 --
 
 CREATE TABLE `sale` (
+  `saleid` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `cost` double NOT NULL,
-  `amount` int(11) NOT NULL,
-  `productcode` int(11) NOT NULL,
-  `eid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `value` double NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -172,7 +188,7 @@ CREATE TABLE `student` (
   `complement` varchar(255) NOT NULL,
   `sdate` timestamp NOT NULL DEFAULT current_timestamp(),
   `photo` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `student`
@@ -192,7 +208,7 @@ CREATE TABLE `studentclass` (
   `tlclass` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
   `aid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -204,7 +220,7 @@ CREATE TABLE `teacher` (
   `tid` int(11) NOT NULL,
   `availability` varchar(255) NOT NULL,
   `eid` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `teacher`
@@ -223,6 +239,12 @@ INSERT INTO `teacher` (`tid`, `availability`, `eid`) VALUES
 --
 ALTER TABLE `activity`
   ADD PRIMARY KEY (`aid`);
+
+--
+-- Índices para tabela `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`cgid`);
 
 --
 -- Índices para tabela `class`
@@ -247,18 +269,25 @@ ALTER TABLE `enableteacher`
   ADD KEY `tid` (`tid`);
 
 --
+-- Índices para tabela `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`itemid`),
+  ADD KEY `fk_sale` (`saleid`);
+
+--
 -- Índices para tabela `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`productcode`);
+  ADD PRIMARY KEY (`productcode`),
+  ADD KEY `fk_category` (`cgid`);
 
 --
 -- Índices para tabela `sale`
 --
 ALTER TABLE `sale`
-  ADD PRIMARY KEY (`sid`),
-  ADD KEY `productcode` (`productcode`),
-  ADD KEY `eid` (`eid`);
+  ADD PRIMARY KEY (`saleid`),
+  ADD KEY `fk_student` (`sid`);
 
 --
 -- Índices para tabela `student`
@@ -292,6 +321,12 @@ ALTER TABLE `activity`
   MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de tabela `category`
+--
+ALTER TABLE `category`
+  MODIFY `cgid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `class`
 --
 ALTER TABLE `class`
@@ -310,6 +345,12 @@ ALTER TABLE `enableteacher`
   MODIFY `etid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `item`
+--
+ALTER TABLE `item`
+  MODIFY `itemid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `product`
 --
 ALTER TABLE `product`
@@ -319,7 +360,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT de tabela `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `saleid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `student`
@@ -358,11 +399,22 @@ ALTER TABLE `enableteacher`
   ADD CONSTRAINT `enableteacher_ibfk_2` FOREIGN KEY (`tid`) REFERENCES `teacher` (`tid`);
 
 --
+-- Limitadores para a tabela `item`
+--
+ALTER TABLE `item`
+  ADD CONSTRAINT `fk_sale` FOREIGN KEY (`saleid`) REFERENCES `sale` (`saleid`);
+
+--
+-- Limitadores para a tabela `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `fk_category` FOREIGN KEY (`cgid`) REFERENCES `category` (`cgid`);
+
+--
 -- Limitadores para a tabela `sale`
 --
 ALTER TABLE `sale`
-  ADD CONSTRAINT `sale_ibfk_1` FOREIGN KEY (`productcode`) REFERENCES `product` (`productcode`),
-  ADD CONSTRAINT `sale_ibfk_2` FOREIGN KEY (`eid`) REFERENCES `employee` (`eid`);
+  ADD CONSTRAINT `fk_student` FOREIGN KEY (`sid`) REFERENCES `student` (`sid`);
 
 --
 -- Limitadores para a tabela `studentclass`

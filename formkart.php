@@ -1,13 +1,16 @@
 <?php 
-    require('header.php');
-    include_once 'conexao.php';
+    require 'header.php';
+    include_once 'connection.php';
 
-    $sql$sql= "SELECT * FROM kart";
+    $totalcompra = 0;
+
+    $sql= "SELECT * FROM kart";
     $resultado = $conn->prepare($sql);
     $resultado->execute();
 
     if(($resultado)and($resultado->RowCount()!=0)){
-?>                
+?>
+    <form action="conclude.php" method="post">
         <table class="table">
         <thead>
          <tr>
@@ -31,18 +34,23 @@
                 <td><?php echo $name ?></td>
                 <td><?php echo $price ?></td>
                 <td><?php echo $quantcompra ?></td>
-                <td><?php echo $total = $quantcompra * $price ?></td>
+                <td><?php echo $total = $quantcompra * $price; $totalcompra += $total; ?></td>
                 <td>
-                    <?php echo "<a href=''>" ; ?>
-                    
+                    <input type="hidden" name="codigo" value="<?php echo $productcode; ?>">
                     <input type="submit" class="btn btn-danger" name="excluir" value="Excluir">
                 </td>
                 </tr> 
 <?php         
         } 
 ?>
-</tbody>
-</table>
-<?php         
+<tr><td><?php echo "Total da Compra - R$" . $totalcompra; ?></td></tr>
+    </tbody>
+            </table>
+<?php
+    $_SESSION["totalcompra"]=$totalcompra;
+?>
+<input type="submit" class="btn btn-primary" value="Finalizar Compra">
+    </form>
+<?php
     } 
 ?>

@@ -1,9 +1,6 @@
 <?php
     require_once 'header.php';
     include_once 'connection.php';
-
-    session_start();
-    ob_start();
 ?>
 
 <?php
@@ -30,8 +27,15 @@
         //var_dump ($dadoslogin);
 
         if(password_verify($dadoslogin['password'], $resposta ['password'])){
-            $_SESSION['name'] = $resposta['name'];
-            header("location: sprofile.php");
+                $_SESSION['name'] = $resposta['name'];
+                $_SESSION["sid"] = $resposta["sid"];
+
+            if($_SESSION["kart"]==true){
+                header("Location: formkart.php");
+            }else{
+                header("Location: sprofile.php");
+            }
+
         } else{
             $_SESSION['msg'] = "Erro: Usuário ou senha inválida!";
         }    
